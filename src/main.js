@@ -5,8 +5,8 @@ const fs = require('fs');
 
 const {debugOut} = require('./tool');
 
-const httpsPort = 8443;
-const absolutePath = '/Users/Yoo/codes/www/misc.saramjungsim.org';
+const httpsPort = 443;
+const absolutePath = 'YOUR_ABSOLUTE_PATH';
 
 const app = express();
 app.use(express.json());
