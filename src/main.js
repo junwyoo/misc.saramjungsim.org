@@ -5,8 +5,8 @@ const fs = require('fs');
 
 const {debugOut} = require('./tool');
 
-const httpsPort = 443;
-const absolutePath = 'YOUR_ABSOLUTE_PATH';
+const httpsPort = 8443;
+const absolutePath = '/Users/Yoo/codes/www/misc.saramjungsim.org';
 
 const app = express();
 app.use(express.json());
@@ -23,8 +23,19 @@ app.get('/', (req, res) => {
 // Check off
 app.get('/checkoff', (req, res) => {
     const {body, headers} = req;
-    debugOut('[info] New request received | ' + JSON.stringify(headers));
+    debugOut('[info] [Check Off] New request received | ' + JSON.stringify(headers));
+
+    app.use('/checkoff', express.static('checkoff'));
     res.status(200).sendFile(absolutePath + '/checkoff/index.html');
+});
+
+// Game
+app.get('/game', (req, res) => {
+    const {body, headers} = req;
+    debugOut('[info] [Game] New request received | ' + JSON.stringify(headers));
+
+    app.use('/game', express.static('game'));
+    res.status(200).sendFile(absolutePath + '/game');
 });
 
 https.createServer({
