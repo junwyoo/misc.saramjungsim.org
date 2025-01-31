@@ -24,7 +24,6 @@ function setTemperature(value) {
 }
 
 document.body.onload = function() {
-    console.log($);
     $(function() {
         $.ajax({
             type: 'GET',
