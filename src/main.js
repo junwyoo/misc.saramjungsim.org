@@ -38,6 +38,15 @@ app.get('/game', (req, res) => {
     res.status(200).sendFile(absolutePath + '/game');
 });
 
+// Members
+app.get('/members', (req, res) => {
+    const {body, headers} = req;
+    debugOut('[info] [Members] New request received | ' + JSON.stringify(headers));
+
+    app.use('/members', express.static('members'));
+    res.status(200).sendFile(absolutePath + '/members/index.html');
+});
+
 https.createServer({
     key: fs.readFileSync('./saramjungsim_org.key'),
     cert: fs.readFileSync('./saramjungsim_org_cert.crt')
