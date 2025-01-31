@@ -1,12 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const https = require('http');
+const https = require('https');
 const fs = require('fs');
 
 const {debugOut} = require('./tool');
 
 const httpsPort = 443;
-const absolutePath = 'YOUR_ABSOLUTE_PATH';
+const absolutePath = '/home/ubuntu/program/misc.saramjungsim.org';
 
 const app = express();
 app.use(express.json());
