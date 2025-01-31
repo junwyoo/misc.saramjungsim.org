@@ -44,7 +44,7 @@ app.get('/members', (req, res) => {
     debugOut('[info] [Members] New request received | ' + JSON.stringify(headers));
 
     app.use('/members', express.static('members'));
-    res.status(200).sendFile(absolutePath + '/members/index.html');
+    res.status(200).sendFile(absolutePath + '/members');
 });
 
 https.createServer({
