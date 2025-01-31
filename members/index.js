@@ -19,7 +19,15 @@ registrationLink.addEventListener("click", () => {
 const temperature = document.getElementById("temperature");
 
 function setTemperature(value) {
-    temperature.style.height = (value - config.minTemp) / (config.maxTemp - config.minTemp) * 100 + "%";
+    const maxGraphValue = value > config.maxTemp ? config.maxTemp : value;
+    temperature.style.height = (maxGraphValue - config.minTemp) / (config.maxTemp - config.minTemp) * 100 + "%";
+    const thousands = parseInt(value / 1000);
+
+    if (thousands > 0) {
+        temperature.dataset.value = thousands + "," + (value % 1000) + units[config.unit];
+        return;
+    }
+
     temperature.dataset.value = value + units[config.unit];
 }
 
