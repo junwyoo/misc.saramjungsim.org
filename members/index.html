@@ -33,7 +33,7 @@
             }
 
             #info {
-            opacity: 0.2;
+            opacity: 0.3;
             margin: 0;
             text-align: center;
             }
@@ -144,12 +144,12 @@
             #playground #range input[type=text]:first-child {
             text-align: right;
             }
-            #playground #unit {
+            #playground #link-to-registration {
             width: 100%;
             margin: 0;
             text-align: center;
             }
-            #playground #unit:hover {
+            #playground #link-to-registration:hover {
             cursor: pointer;
             }
 
@@ -278,6 +278,7 @@
             }
         </style>
     </head>
+    <script type="text/javascript" src="jquery.min.js"></script>
 
     <body class="bg-light" style="font-size: 1rem; margin: 1rem;">
         <div id="wrapper">
@@ -287,70 +288,16 @@
             </div>
 
             <div id="playground">
-                <div id="range">
+                <div style="display: none;" id="range">
                     <input id="minTemp" type="text" value="Min">
-                    <input type="range" min="0" max="7500" value="42">
+                    <input type="range" min="0" max="7500" value="0">
                     <input id="maxTemp" type="text" value="Max">
                 </div>
-                <p id="unit">가입신청서 바로가기</p>
+                <p id="link-to-registration">가입신청서 바로가기</p>
             </div>
 
             <p id="info">우리의 힘은 우리의 생각보다 강합니다</p>
         </div>
     </body>
-
-    <script>
-        const units = {
-        Celcius: "명",
-        Fahrenheit: "°F" };
-
-
-        const config = {
-        minTemp: 0,
-        maxTemp: 7500,
-        unit: "Celcius" };
-
-
-        // Change min and max temperature values
-
-        const tempValueInputs = document.querySelectorAll("input[type='text']");
-
-        tempValueInputs.forEach(input => {
-        input.addEventListener("change", event => {
-            const newValue = event.target.value;
-
-            if (isNaN(newValue)) {
-            return input.value = config[input.id];
-            } else {
-            config[input.id] = input.value;
-            range[input.id.slice(0, 3)] = config[input.id]; // Update range
-            return setTemperature(); // Update temperature
-            }
-        });
-        });
-
-        // Switch unit of temperature
-
-        const unitP = document.getElementById("unit");
-
-        unitP.addEventListener("click", () => {
-            window.open("https://join.saramjungsim.org")
-        // config.unit = config.unit === "Celcius" ? "Fahrenheit" : "Celcius";
-        // unitP.innerHTML = config.unit + ' ' + units[config.unit];
-        // return setTemperature();
-        });
-
-        // Change temperature
-
-        const range = document.querySelector("input[type='range']");
-        const temperature = document.getElementById("temperature");
-
-        function setTemperature() {
-        temperature.style.height = (range.value - config.minTemp) / (config.maxTemp - config.minTemp) * 100 + "%";
-        temperature.dataset.value = range.value + units[config.unit];
-        }
-
-        range.addEventListener("input", setTemperature);
-        setTimeout(setTemperature, 1000);
-    </script>
+    <script type="text/javascript" src="index.js"></script>
 </html>
