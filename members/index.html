@@ -365,15 +365,26 @@
                 transition: 300ms;
                 color: rgb(0, 73, 143);
             }
-    
+
             .css-1l6mqwh:hover {
                 color: rgb(0, 73, 143);
+            }
+        </style>
+        <style>
+            .logo {
+                width: 20%;
+                position: absolute;
+            }
+            @media all and (max-width: 1366px) {
+                .logo {
+                    width: 40%
+                }
             }
         </style>
     </head>
 
     <body class="bg-light" style="font-size: 1rem; margin: 1rem;">
-        <img src="logo.png" style="width: 40%; position: absolute" />
+        <img src="logo.png" class="logo" />
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <div id="wrapper">
             <div id="termometer">
