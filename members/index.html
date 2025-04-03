@@ -120,6 +120,40 @@
             top: calc( 				-1em / 2.2 + 5px 			);
             }
 
+            #termometer #indicator {
+            bottom: 0;
+            background: transparent;
+            width: 100%;
+            border-radius: 20px;
+            background-size: 100% 240px;
+            transition: all 0.2s ease-in-out;
+            }
+            #termometer #indicator, #termometer #indicator:before, #termometer #indicator:after {
+            position: absolute;
+            }
+            #termometer #indicator:before {
+            content: attr(data-value);
+            color: #FFD700;
+            z-index: 2;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1;
+            transform: translateY(50%);
+            left: calc(110% + 1em / 1.5);
+            top: calc(-1em + 5px - 5px * 2);
+            width: 50px;
+            } 
+            /* rgba(237, 243, 241, 0.7 */
+            #termometer #indicator:after {
+            content: "";
+            left: 130%;
+            border-top: 0.4545454545em solid transparent;
+            border-bottom: 0.4545454545em solid transparent;
+            border-right: 0.6666666667em solid #FFD700;
+            top: calc( 				-1em / 2.2 + 5px 			);
+            }
+
             #playground {
             font-size: 1.1em;
             }
@@ -389,6 +423,7 @@
         <div id="wrapper">
             <div id="termometer">
                 <div id="temperature" style="height:0; text-align: right;" data-value="로딩중"></div>
+                <div id="indicator" style="height:100%; text-align: left;" data-value="7,000"></div>
                 <div id="graduations"></div>
             </div>
 
