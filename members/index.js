@@ -31,6 +31,25 @@ function setTemperature(value) {
     temperature.dataset.value = value + units[config.unit];
 }
 
+function setLastUpdateText(value) {
+    const date = new Date(value);
+    if (!value || date.toString() === 'Invalid Date') {
+        console.log('invalid date')
+        return;
+    }
+    console.log('valid date', date.toString())
+    const lastUpdate = document.getElementById("lastUpdate");
+
+    const superScriptNode = document.createElement("sup");
+    const superScriptText = document.createTextNode("*");
+    // superScriptNode.appendChild(superScriptText);
+
+    const timeContent = document.createTextNode("(마지막 업데이트: " + date.toLocaleString() + ")");
+
+    lastUpdate.appendChild(superScriptNode);
+    lastUpdate.appendChild(timeContent);
+}
+
 document.body.onload = function() {
     $(function() {
         $.ajax({
@@ -41,12 +60,19 @@ document.body.onload = function() {
                'Access-Control-Allow-Origin': '*'
             },
             success: function(res, status) {
-                const {count} = res;
+                const {count, lastUpdate} = res;
 
                 if (count) {
                     const integerCount = parseInt(count);
                     if (!isNaN(integerCount)) {
                         setTemperature(count);
+                    }
+                }
+
+                if (lastUpdate) {
+                    const parsedLastUpdate = parseInt(lastUpdate);
+                    if (!isNaN(parsedLastUpdate)) {
+                        setLastUpdateText(parsedLastUpdate);
                     }
                 }
             },
