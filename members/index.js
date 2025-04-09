@@ -41,9 +41,6 @@ function setLastUpdateText(value) {
     const lastUpdate = document.getElementById("lastUpdate");
 
     const superScriptNode = document.createElement("sup");
-    const superScriptText = document.createTextNode("*");
-    // superScriptNode.appendChild(superScriptText);
-
     const timeContent = document.createTextNode("(마지막 업데이트: " + date.toLocaleString() + ")");
 
     lastUpdate.appendChild(superScriptNode);
