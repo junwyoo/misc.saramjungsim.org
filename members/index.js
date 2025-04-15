@@ -18,17 +18,30 @@ registrationLink.addEventListener("click", () => {
 
 const temperature = document.getElementById("temperature");
 
+function toCommaString (value) {
+    const thousands = parseInt(value / 1000);
+    const ones = value % 1000;
+    const stringOnes = ones + "";
+
+    if (thousands === 0) {
+        return stringOnes;
+    }
+
+    let concatedOnes = stringOnes;
+
+    while (concatedOnes.length !== 3) {
+        concatedOnes = "0" + concatedOnes;
+    }
+
+    return thousands + "," + concatedOnes;
+}
+
 function setTemperature(value) {
     const maxGraphValue = value > config.maxTemp ? config.maxTemp : value;
     temperature.style.height = (maxGraphValue - config.minTemp) / (config.maxTemp - config.minTemp) * 100 + "%";
-    const thousands = parseInt(value / 1000);
+    const commaString = toCommaString(value);
 
-    if (thousands > 0) {
-        temperature.dataset.value = thousands + "," + (value % 1000) + units[config.unit];
-        return;
-    }
-
-    temperature.dataset.value = value + units[config.unit];
+    temperature.dataset.value = commaString + units[config.unit];
 }
 
 function setLastUpdateText(value) {
@@ -37,7 +50,7 @@ function setLastUpdateText(value) {
         console.log('invalid date')
         return;
     }
-    console.log('valid date', date.toString())
+
     const lastUpdate = document.getElementById("lastUpdate");
 
     const superScriptNode = document.createElement("sup");
