@@ -4,7 +4,7 @@ const units = {
 
 const config = {
     minTemp: 0,
-    maxTemp: 7500,
+    maxTemp: 5000,
     unit: "person"
 };
 
